@@ -1,0 +1,24 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    
+    <!-- Background Box (Rounded Rectangle) -->
+    <path
+        android:fillColor="#1A237E"
+        android:pathData="M20,10 L100,10 A10,10 0 0 1 110,20 L110,100 A10,10 0 0 1 100,110 L20,110 A10,10 0 0 1 10,100 L10,20 A10,10 0 0 1 20,10 Z" />
+
+    <!-- Wallet Icon (Centered and scaled) -->
+    <!-- Original path: M21,18v1c0,1.1 -0.9,2 -2,2H5c-1.11,0 -2,-0.9 -2,-2V5c0,-1.1 0.89,-2 2,-2h14c1.1,0 2,0.9 2,2v1h-9c-1.11,0 -2,0.9 -2,2v8c0,1.1 0.89,2 2,2h9zM12,14c0,-1.1 0.9,-2 2,-2h7v4h-7c-1.1,0 -2,-0.9 -2,-2z -->
+    <!-- Scaled by roughly 3x and offset to center in 120x120 -->
+    <group
+        android:translateX="30"
+        android:translateY="30"
+        android:scaleX="2.5"
+        android:scaleY="2.5">
+        <path
+            android:fillColor="#F0F7FF"
+            android:pathData="M21,18v1c0,1.1 -0.9,2 -2,2H5c-1.11,0 -2,-0.9 -2,-2V5c0,-1.1 0.89,-2 2,-2h14c1.1,0 2,0.9 2,2v1h-9c-1.11,0 -2,0.9 -2,2v8c0,1.1 0.89,2 2,2h9zM12,14c0,-1.1 0.9,-2 2,-2h7v4h-7c-1.1,0 -2,-0.9 -2,-2z"/>
+    </group>
+</vector>
