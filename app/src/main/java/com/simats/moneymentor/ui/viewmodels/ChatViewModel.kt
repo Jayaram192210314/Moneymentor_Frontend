@@ -64,6 +64,8 @@ class ChatViewModel : ViewModel() {
                 4. If the user asks ambiguous questions, ask them to relate it to finance.
 
                 5. Never leave your financial domain under any circumstances.
+                
+                6. If user wishes as Hi, Hello, or any greetings, respond with a financial tip or fact instead of a normal greeting.
             """.trimIndent())
         }
     )
