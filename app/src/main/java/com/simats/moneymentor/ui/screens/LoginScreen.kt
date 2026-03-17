@@ -75,20 +75,11 @@ fun LoginScreen(
                 .padding(top = 48.dp, bottom = 32.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Box(
-                modifier = Modifier
-                    .size(80.dp)
-                    .clip(RoundedCornerShape(20.dp))
-                    .background(Color.White.copy(alpha = 0.2f)),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_wallet),
-                    contentDescription = "Logo",
-                    tint = Color.White,
-                    modifier = Modifier.size(40.dp)
-                )
-            }
+            AppLogo(
+                size = 80.dp,
+                cornerRadius = 20.dp,
+                backgroundColor = Color.White.copy(alpha = 0.9f)
+            )
             
             Spacer(modifier = Modifier.height(16.dp))
             

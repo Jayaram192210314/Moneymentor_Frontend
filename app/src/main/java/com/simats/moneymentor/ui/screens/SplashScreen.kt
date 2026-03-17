@@ -25,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.simats.moneymentor.R
+import com.simats.moneymentor.ui.components.AppLogo
 import com.simats.moneymentor.ui.theme.*
 import kotlinx.coroutines.delay
 
@@ -51,20 +52,11 @@ fun SplashScreen(onTimeout: () -> Unit) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Box(
-                modifier = Modifier
-                    .size(120.dp)
-                    .clip(CircleShape)
-                    .background(Color.White),
-                contentAlignment = Alignment.Center
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_wallet),
-                    contentDescription = "App Logo",
-                    modifier = Modifier.size(60.dp),
-                    colorFilter = ColorFilter.tint(VioletGradientEnd)
-                )
-            }
+            AppLogo(
+                size = 100.dp,
+                cornerRadius = 24.dp,
+                modifier = Modifier.padding(bottom = 0.dp)
+            )
             
             Spacer(modifier = Modifier.height(32.dp))
             
