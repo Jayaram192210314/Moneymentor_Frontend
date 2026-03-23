@@ -64,4 +64,7 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.6.0")
     implementation(libs.google.ai.client)
     implementation(libs.androidx.work.runtime.ktx)
+    implementation(libs.android.billing.ktx)
+    implementation(libs.material)
+    implementation(libs.androidx.cardview)
 }

@@ -27,7 +27,7 @@ class ChatViewModel : ViewModel() {
 
     private val generativeModel = GenerativeModel(
         modelName = "gemini-2.5-flash",
-        apiKey = "AIzaSyCHri2Fr3idKk1EHcZ5f0Fg_YMXA-qRZt0",
+        apiKey = "AIzaSyD3lwTy1De3tqAGNbk1m2Jb00wTX5G90ZY",
         systemInstruction = content {
             text("""
                 You are FinBot, an AI assistant that is strictly limited to financial topics only.

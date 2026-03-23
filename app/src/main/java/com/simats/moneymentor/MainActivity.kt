@@ -34,7 +34,9 @@ import com.simats.moneymentor.ui.screens.GoldRatesScreen
 import com.simats.moneymentor.ui.screens.SilverRatesScreen
 import com.simats.moneymentor.data.LearningArticle
 import com.simats.moneymentor.data.UserProfile
+import com.simats.moneymentor.ui.activities.SubscriptionActivity
 import com.simats.moneymentor.ui.theme.MoneyMentorTheme
+import android.content.Intent
 import androidx.activity.result.contract.ActivityResultContracts
 import android.Manifest
 import android.os.Build
@@ -54,6 +56,18 @@ class MainActivity : androidx.activity.ComponentActivity() {
         androidx.activity.result.contract.ActivityResultContracts.RequestPermission()
     ) { isGranted: Boolean -> }
 
+    override fun onNewIntent(intent: android.content.Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        intent.getStringExtra("navigate_to")?.let { target ->
+            if (target == "home") {
+                navigateToHome()
+            }
+        }
+    }
+
+    private var navigateToHome: () -> Unit = {}
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,6 +85,16 @@ class MainActivity : androidx.activity.ComponentActivity() {
 
                 // Use a Surface container using the 'background' color from the theme
                 val currentScreen = remember { mutableStateOf("splash") }
+                
+                navigateToHome = { currentScreen.value = "home" }
+
+                androidx.compose.runtime.LaunchedEffect(Unit) {
+                    intent?.getStringExtra("navigate_to")?.let { target ->
+                        if (target == "home") {
+                            currentScreen.value = "home"
+                        }
+                    }
+                }
 
                 // User Profile State with Persistence
                 val context = androidx.compose.ui.platform.LocalContext.current
@@ -213,7 +237,9 @@ class MainActivity : androidx.activity.ComponentActivity() {
                                     com.simats.moneymentor.data.LearningRepository.currentUserId = id
                                     sharedPreferences.edit().putInt("user_id", id).apply()
                                 }
-                                currentScreen.value = "home" 
+                                // Launch SubscriptionActivity instead of setting screen to home
+                                val intent = android.content.Intent(context, SubscriptionActivity::class.java)
+                                context.startActivity(intent)
                             },
                             onSignUpClick = { currentScreen.value = "signup" },
                             onForgotPasswordClick = { currentScreen.value = "forgot_password" }

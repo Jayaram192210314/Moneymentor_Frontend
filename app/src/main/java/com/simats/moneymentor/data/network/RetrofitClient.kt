@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BASE_URL = "http://10.90.27.238:5000/"
+    private const val BASE_URL = "http://180.235.121.253:8069/"
 
     private val cookieJar = object : CookieJar {
         private val cookieStore = mutableMapOf<String, List<Cookie>>()
