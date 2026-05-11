@@ -105,7 +105,7 @@ class MainActivity : androidx.activity.ComponentActivity() {
                     val email = sharedPreferences.getString("email", "alex.johnson@example.com") ?: ""
                     val phone = sharedPreferences.getString("phone", "+91 98765 43210") ?: ""
                     val dob = sharedPreferences.getString("dob", "Jan 15, 1998") ?: ""
-                    val userId = sharedPreferences.getInt("user_id", 5)
+                    val userId = sharedPreferences.getInt("user_id", -1)
                     // Sync Repository initially
                     com.simats.moneymentor.data.GoalRepository.currentUserId = userId
                     com.simats.moneymentor.data.LearningRepository.currentUserId = userId
@@ -202,9 +202,19 @@ class MainActivity : androidx.activity.ComponentActivity() {
 
                 when (currentScreen.value) {
                     "splash" -> SplashScreen {
-                        currentScreen.value = "onboarding"
+                        val userId = sharedPreferences.getInt("user_id", -1)
+                        val isOnboardingCompleted = sharedPreferences.getBoolean("is_onboarding_completed", false)
+                        
+                        if (userId > 0) {
+                            currentScreen.value = "home"
+                        } else if (isOnboardingCompleted) {
+                            currentScreen.value = "login"
+                        } else {
+                            currentScreen.value = "onboarding"
+                        }
                     }
                     "onboarding" -> OnboardingScreen {
+                        sharedPreferences.edit().putBoolean("is_onboarding_completed", true).apply()
                         currentScreen.value = "login"
                     }
                     "login" -> {
@@ -375,7 +385,12 @@ class MainActivity : androidx.activity.ComponentActivity() {
                                 }
                             },
                             onBackClick = { currentScreen.value = "home" },
-                            onLogOutClick = { currentScreen.value = "login" }
+                            onLogOutClick = { 
+                                sharedPreferences.edit().remove("user_id").apply()
+                                com.simats.moneymentor.data.GoalRepository.currentUserId = -1
+                                com.simats.moneymentor.data.LearningRepository.currentUserId = -1
+                                currentScreen.value = "login" 
+                            }
                         )
                     }
                     "quiz" -> {

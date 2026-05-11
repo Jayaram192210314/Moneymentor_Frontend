@@ -32,6 +32,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -226,13 +227,13 @@ fun HomeHeader(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .height(80.dp) // Adjusted height for better spacing
+            .height(90.dp) // Increased height for better spacing and long names
             .background(
                 brush = Brush.horizontalGradient(
                     colors = listOf(HomeHeaderStart, HomeHeaderMid, HomeHeaderEnd)
                 )
             )
-            .padding(horizontal = 24.dp, vertical = 16.dp)
+            .padding(horizontal = 16.dp, vertical = 16.dp) // Reduced horizontal padding
     ) {
         Row(
             modifier = Modifier.fillMaxWidth().align(Alignment.Center),
@@ -240,7 +241,10 @@ fun HomeHeader(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             // App Icon + Greeting (Left)
-            Row(verticalAlignment = Alignment.CenterVertically) {
+            Row(
+                modifier = Modifier.weight(1f),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 Box(
                     modifier = Modifier
                         .size(40.dp)
@@ -266,7 +270,9 @@ fun HomeHeader(
                         text = userName,
                         color = Color.White,
                         fontSize = 24.sp,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
                     )
                 }
             }
